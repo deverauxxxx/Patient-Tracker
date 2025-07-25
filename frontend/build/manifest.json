@@ -1,0 +1,64 @@
+{
+  "short_name": "Kharki's Tracker",
+  "name": "Kharki's Patient Tracker",
+  "description": "Hospital maternity patient tracking system for midwives and ward staff",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffffff'/%3E%3Ctext y='50' x='50' text-anchor='middle' dominant-baseline='central' font-size='60' fill='%232563eb'%3E🏥%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ffffff'/%3E%3Ctext y='50' x='50' text-anchor='middle' dominant-baseline='central' font-size='60' fill='%232563eb'%3E🏥%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#2563eb",
+  "background_color": "#f3f4f6",
+  "orientation": "portrait",
+  "categories": ["medical", "healthcare", "productivity"],
+  "lang": "en",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "Add Patient",
+      "short_name": "Add Patient",
+      "url": "/?view=add-patient",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2316a34a'/%3E%3Ctext y='50' x='50' text-anchor='middle' dominant-baseline='central' font-size='60' fill='white'%3E+%3C/text%3E%3C/svg%3E",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Patient List",
+      "short_name": "Patients",
+      "url": "/?view=patients",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232563eb'/%3E%3Ctext y='50' x='50' text-anchor='middle' dominant-baseline='central' font-size='40' fill='white'%3E👥%3C/text%3E%3C/svg%3E",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Vital Signs",
+      "short_name": "Vitals",
+      "url": "/?view=vital-signs",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23dc2626'/%3E%3Ctext y='50' x='50' text-anchor='middle' dominant-baseline='central' font-size='40' fill='white'%3E📊%3C/text%3E%3C/svg%3E",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
