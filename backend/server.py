@@ -246,11 +246,21 @@ async def update_patient(patient_db_id: str, patient_update: PatientUpdate):
     update_data = {k: v for k, v in patient_update.dict().items() if v is not None}
     update_data["updated_at"] = datetime.utcnow()
     
+    # Convert date objects to strings for MongoDB
+    if isinstance(update_data.get("birthdate"), date):
+        update_data["birthdate"] = update_data["birthdate"].isoformat()
+    if isinstance(update_data.get("admission_date"), date):
+        update_data["admission_date"] = update_data["admission_date"].isoformat()
+    
     # Recalculate age if birthdate is updated
     if "birthdate" in update_data:
-        update_data["age"] = calculate_age(update_data["birthdate"])
+        birthdate_obj = datetime.fromisoformat(update_data["birthdate"]).date() if isinstance(update_data["birthdate"], str) else update_data["birthdate"]
+        update_data["age"] = calculate_age(birthdate_obj)
     elif existing_patient.get("birthdate"):
-        update_data["age"] = calculate_age(existing_patient["birthdate"])
+        existing_birthdate = existing_patient["birthdate"]
+        if isinstance(existing_birthdate, str):
+            existing_birthdate = datetime.fromisoformat(existing_birthdate).date()
+        update_data["age"] = calculate_age(existing_birthdate)
     
     await db.patients.update_one({"id": patient_db_id}, {"$set": update_data})
     
