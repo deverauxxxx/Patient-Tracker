@@ -219,6 +219,18 @@ async def get_patient(patient_db_id: str):
     if not patient:
         raise HTTPException(status_code=404, detail="Patient not found")
     
+    # Convert string dates back to date objects
+    if isinstance(patient.get("birthdate"), str):
+        try:
+            patient["birthdate"] = datetime.fromisoformat(patient["birthdate"]).date()
+        except:
+            pass
+    if isinstance(patient.get("admission_date"), str):
+        try:
+            patient["admission_date"] = datetime.fromisoformat(patient["admission_date"]).date()
+        except:
+            pass
+    
     # Update age
     if patient.get("birthdate"):
         patient["age"] = calculate_age(patient["birthdate"])
