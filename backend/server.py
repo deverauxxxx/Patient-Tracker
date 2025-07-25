@@ -146,9 +146,23 @@ async def create_patient(patient: PatientCreate):
     
     patient_dict = patient.dict()
     patient_dict["age"] = age
+    
+    # Convert date objects to strings for MongoDB storage
+    if isinstance(patient_dict.get("birthdate"), date):
+        patient_dict["birthdate"] = patient_dict["birthdate"].isoformat()
+    if isinstance(patient_dict.get("admission_date"), date):
+        patient_dict["admission_date"] = patient_dict["admission_date"].isoformat()
+    
     patient_obj = Patient(**patient_dict)
     
-    await db.patients.insert_one(patient_obj.dict())
+    # Convert dates to strings in the dict for MongoDB
+    patient_doc = patient_obj.dict()
+    if isinstance(patient_doc.get("birthdate"), date):
+        patient_doc["birthdate"] = patient_doc["birthdate"].isoformat()
+    if isinstance(patient_doc.get("admission_date"), date):
+        patient_doc["admission_date"] = patient_doc["admission_date"].isoformat()
+    
+    await db.patients.insert_one(patient_doc)
     return patient_obj
 
 @api_router.get("/patients", response_model=List[Patient])
