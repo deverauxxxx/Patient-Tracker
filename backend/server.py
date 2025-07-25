@@ -265,6 +265,19 @@ async def update_patient(patient_db_id: str, patient_update: PatientUpdate):
     await db.patients.update_one({"id": patient_db_id}, {"$set": update_data})
     
     updated_patient = await db.patients.find_one({"id": patient_db_id})
+    
+    # Convert string dates back to date objects
+    if isinstance(updated_patient.get("birthdate"), str):
+        try:
+            updated_patient["birthdate"] = datetime.fromisoformat(updated_patient["birthdate"]).date()
+        except:
+            pass
+    if isinstance(updated_patient.get("admission_date"), str):
+        try:
+            updated_patient["admission_date"] = datetime.fromisoformat(updated_patient["admission_date"]).date()
+        except:
+            pass
+    
     return Patient(**updated_patient)
 
 @api_router.delete("/patients/{patient_db_id}")
