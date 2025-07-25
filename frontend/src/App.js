@@ -73,7 +73,7 @@ function App() {
   const Navigation = () => (
     <nav className="bg-blue-600 text-white p-4 shadow-lg">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-xl font-bold">🏥 Maternity Patient Tracker</h1>
+        <h1 className="text-xl font-bold">🏥 Kharki's Patient Tracker</h1>
         <div className="space-x-4">
           <button
             onClick={() => setCurrentView('dashboard')}
