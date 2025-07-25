@@ -195,6 +195,18 @@ async def get_patients(
     # Update ages for all patients
     updated_patients = []
     for patient in patients:
+        # Convert string dates back to date objects
+        if isinstance(patient.get("birthdate"), str):
+            try:
+                patient["birthdate"] = datetime.fromisoformat(patient["birthdate"]).date()
+            except:
+                pass
+        if isinstance(patient.get("admission_date"), str):
+            try:
+                patient["admission_date"] = datetime.fromisoformat(patient["admission_date"]).date()
+            except:
+                pass
+        
         if patient.get("birthdate"):
             patient["age"] = calculate_age(patient["birthdate"])
         updated_patients.append(Patient(**patient))
